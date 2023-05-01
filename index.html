@@ -1,0 +1,45 @@
+<script>
+
+let eleccionJugadorPrompt = prompt("Elige entre Piedra, Papel o Tijera")
+console.log(eleccionJugadorPrompt)
+function getComputerChoice (max, min) {
+    let jugadaAleatoria = Math.floor(Math.random() * (max - min + 1) + min);
+        if(jugadaAleatoria === 1){
+        return "Piedra";
+        } else if(jugadaAleatoria === 2){
+        return "Papel";
+        } else {
+        return "Tijera"
+        }
+}
+
+function game(eleccionJugador, eleccionMaquina){
+    if(eleccionJugador === eleccionMaquina){
+        return "Empate";
+    } else if(eleccionJugador === "Tijera" && eleccionMaquina === "Papel"){
+        return "Ganas!";
+    } else if(eleccionJugador === "Piedra" && eleccionMaquina === "Tijera"){
+        return "Ganas!";
+    } else if(eleccionJugador === "Papel" && eleccionMaquina === "Piedra"){
+        return "Ganas!";
+    } else {
+        return "Pierdes :("
+    }
+}
+/*function match(){
+    puntosJugador = 0;
+    puntosMaquina = 0;
+    while (puntosJugador < 5 || puntosMaquina < 5){
+        
+        if (game(eleccionJugadorPrompt, getComputerChoice(3, 1)) === "Ganas!"){
+            puntosJugador++;
+
+        } else if((game(eleccionJugadorPrompt, getComputerChoice(3, 1)) === "Pierdes :(")){
+            puntosMaquina++
+        }
+    }
+    return puntosJugador;
+    return puntosMaquina;
+}
+console.log(match()) */
+</script>
