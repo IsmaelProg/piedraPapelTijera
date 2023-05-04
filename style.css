@@ -1,0 +1,10 @@
+body {
+    background-color: rgb(208, 207, 207);
+    text-align: center;
+}
+
+#marcador {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}

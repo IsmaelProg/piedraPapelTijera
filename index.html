@@ -1,7 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Piedra Papel Tijera</title>
+</head>
+<body>
+    <h1>PIEDRA PAPEL TIJERA</h1>
+    <h4>Quien consiga 5 gana!</h4>
+    <h3>Elige uno: </h3>
+    <button id="Piedra" type="button">Piedra</button>
+    <button id="Papel" type="button">Papel</button>
+    <button id="Tijera" type="button">Tijera</button>
+    <h2 >Resultado</h3>
+    <div id="marcador">    
+        <h4 id="cj">Tú</h4>
+        <h4 id="cm">Maquina</h4>
+    </div>
+    <div id="accion"></div>
 <script>
+const columnaJugador = document.querySelector('#cj');
+    const columnaMaquina = document.querySelector('#cm');
+    const parrresultadoJ = document.createElement('p');
+    const parrresultadoM = document.createElement('p');
+    columnaJugador.appendChild(parrresultadoJ);
+    columnaMaquina.appendChild(parrresultadoM);
+    parrresultadoJ.textContent = '';
+    parrresultadoM.textContent = '';
+let eleccionJugador
 
-let eleccionJugadorPrompt = prompt("Elige entre Piedra, Papel o Tijera")
-console.log(eleccionJugadorPrompt)
+
+let buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        eleccionJugador = button.id;
+        game()
+    })
+})
+
 function getComputerChoice (max, min) {
     let jugadaAleatoria = Math.floor(Math.random() * (max - min + 1) + min);
         if(jugadaAleatoria === 1){
@@ -13,33 +50,49 @@ function getComputerChoice (max, min) {
         }
 }
 
-function game(eleccionJugador, eleccionMaquina){
+function game(){
+    const container = document.querySelector('#accion')
+    const parrEleccion = document.createElement('p')
+    const eleccionMaquina = getComputerChoice(3,1);
+    
     if(eleccionJugador === eleccionMaquina){
-        return "Empate";
+        result = 'EMPATE';
     } else if(eleccionJugador === "Tijera" && eleccionMaquina === "Papel"){
-        return "Ganas!";
+        result = "Ganas!";
     } else if(eleccionJugador === "Piedra" && eleccionMaquina === "Tijera"){
-        return "Ganas!";
+        result = "Ganas!";
     } else if(eleccionJugador === "Papel" && eleccionMaquina === "Piedra"){
-        return "Ganas!";
+        result = "Ganas!";
     } else {
-        return "Pierdes :("
+        result = "Pierdes :("
     }
+    parrEleccion.textContent = "Elegiste " + eleccionJugador + " la maquina escogió " + eleccionMaquina + ', ' + result;
+    container.appendChild(parrEleccion)
+    
+    contador()
+    cinco()
 }
-/*function match(){
-    puntosJugador = 0;
-    puntosMaquina = 0;
-    while (puntosJugador < 5 || puntosMaquina < 5){
-        
-        if (game(eleccionJugadorPrompt, getComputerChoice(3, 1)) === "Ganas!"){
-            puntosJugador++;
 
-        } else if((game(eleccionJugadorPrompt, getComputerChoice(3, 1)) === "Pierdes :(")){
-            puntosMaquina++
-        }
+function contador(){
+    if (result === "Ganas!"){
+        parrresultadoJ.textContent += '|'
+        
+    } else if(result === "Pierdes :("){
+        parrresultadoM.textContent += '|'
+        
     }
-    return puntosJugador;
-    return puntosMaquina;
 }
-console.log(match()) */
+
+function cinco() {
+if(parrresultadoJ.textContent === '|||||'){
+    alert('Ganaste!');
+    
+} else if(parrresultadoM.textContent === '|||||')
+   alert('Perdiste!');
+   
+}
+
+
 </script>
+</body>
+</html>
